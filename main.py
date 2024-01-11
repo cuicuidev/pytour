@@ -1,14 +1,13 @@
-from test_graph import G
+from core.graph import Graph
+# from core.algorithms import Tour
 
 def main():
-    print("NODES\n")
-    for node in G.nodes:
-        print(node.tag)
+    G = Graph.from_osm("test.osm")
+    print(G)
 
-    print("\n")
-    print("EDGES\n")
-    for edge in G.edges:
-        print(f"{edge.weight}m {edge.source.tag} - {edge.target.tag}")
+    # pathfinding_algorithm = Tour()
+    # path = G.get_optimal_path(pathfinding_algorithm, 0, 0)
+    # print(path)
 
 if __name__ == "__main__":
     main()
