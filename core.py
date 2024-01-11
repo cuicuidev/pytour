@@ -6,6 +6,9 @@ class Node:
         self.id: int = 0
         self.value = value
         self.tag = tag
+        self.x = 0
+        self.y = 0
+        self.g = float("inf")
 
 
 class Edge:
@@ -17,7 +20,7 @@ class Edge:
         self.target = target
 
 class Constraints:
-    max: Optional[float]
+    max: float
 
 class Path:
 
@@ -58,8 +61,21 @@ class Graph:
         for i, edge in enumerate(self.edges):
             edge.id = i
 
+    def _get_node_by_id(self, id: int) -> Node:
+        return self.nodes[id]
+
+    def _heuristic(self, node_id: int, destination_id: int, weight_constraints: Constraints) -> float:
+        node = self._get_node_by_id(node_id)
+        destination = self._get_node_by_id(destination_id)
+        max_weight = weight_constraints.max
+        distance = abs(node.x - destination.x) + abs(node.y + destination.y)
+        heuristic = distance + (max_weight - node.g) * node.value
+        return heuristic
+
     def tour(self, start_id: int, destination_id: int, weight_constraints: Constraints) -> Path:
+        max_weight = weight_constraints.max
         
+
 
 
 
