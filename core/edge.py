@@ -2,8 +2,12 @@ from abc import ABC, abstractmethod
 
 from .properties import Properties
 
-class Edge(ABC):
+class Edge:
 
-    def __init__(self, id: int, properties: Properties) -> None:
+    def __init__(self, id: int, source: int, target: int) -> None:
         self.id = id
-        self.properties = properties
+        self.source = source
+        self.target = target
+
+    def __str__(self) -> str:
+        return f"Edge {self.id}: {self.source} -> {self.target}"
