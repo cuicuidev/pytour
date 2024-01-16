@@ -1,7 +1,3 @@
-from abc import ABC, abstractmethod
-
-from .properties import Properties
-
 class Edge:
 
     def __init__(self, id: int, source: int, target: int) -> None:

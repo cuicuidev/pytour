@@ -22,11 +22,13 @@ class Coordinates:
         raise ValueError("The type parameter must be set to one of the following: `haversine`, `euclidian` or `manhattan`")
 
     def _get_euclidian(self, other: Self) -> float:
-        pass
+        dist = sqrt((self.lat - other.lat)**2 + (self.lng - other.lng)**2)
+        return dist
 
     def _get_manhattan(self, other: Self) -> float:
-        pass
-        
+        dist = abs(self.lat - other.lat) + abs(self.lng - other.lng)
+        return dist
+
     def _get_haversine(self, other: Self) -> float:
         R = 6371.0
 
@@ -38,4 +40,5 @@ class Coordinates:
 
         a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlng / 2)**2
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
-        return R * c
+        dist = R * c
+        return dist

@@ -1,7 +1,7 @@
 from .node import Node
 from .edge import Edge
 
-from typing import Generator, Iterable, Any, LiteralString
+from typing import Generator, Iterable, Any
 
 class Graph:
 
@@ -52,6 +52,12 @@ class Graph:
             for line in f:
                 strip_line = line.strip()
                 if strip_line.startswith("<node"):
+                    if reading_node:
+                        node.append(line)
+                        node = ''.join(node)
+                        yield node
+                        node = []
+
                     reading_node = True
                 if strip_line.startswith("</node"):
                     reading_node = False
