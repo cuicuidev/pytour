@@ -1,7 +1,8 @@
 from .node import Node
 from .edge import Edge
+from .coordinates import Coordinates
 
-from typing import Generator, Iterable, Any
+from typing import Generator, Iterable, Any, Optional
 
 class Graph:
 
@@ -13,6 +14,11 @@ class Graph:
         nodes_repr = '\n'.join([str(node) for node in self.nodes])
         edges_repr = '\n'.join([str(edge) for edge in self.edges])
         return f"Nodes:\n{nodes_repr}\n\nEdges:\n{edges_repr}"
+
+    def node_at(self, coordinates: Coordinates) -> Optional[Node]:
+        for node in self.nodes:
+            if node.coordinates == coordinates:
+                return node
 
     @classmethod
     def from_osm(cls, file: str) -> "Graph":

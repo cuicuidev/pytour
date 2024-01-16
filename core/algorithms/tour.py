@@ -1,4 +1,4 @@
-#from .core import PathfindingAlgorithm
+from .core import PathfindingAlgorithm
 
 class Tour(PathfindingAlgorithm):
     """
