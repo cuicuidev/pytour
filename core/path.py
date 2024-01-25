@@ -21,4 +21,4 @@ class Path:
         return distance(self.nodes)
     
     def __str__(self) -> str:
-        return f"Path({self.nodes.__str__()})"
+        return f"Path({[str(node) for node in self.nodes].__str__()})"

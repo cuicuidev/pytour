@@ -36,11 +36,11 @@ class Tour(PathfindingAlgorithm):
         # BFS Implementation for testing purposes
 
         queue = [[start, Path([start])]]
-        visited = []
+        visited = set()
 
         while queue:
             current_node, current_path = queue.pop(0)
-            visited.append(current_node)
+            visited.add(current_node)
 
             if current_node == end:
                 return current_path

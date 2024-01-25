@@ -6,6 +6,8 @@ class Node:
         self.id = id
         self.coordinates = coordinates
 
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: "Node") -> bool:
         return self.id == other.id
