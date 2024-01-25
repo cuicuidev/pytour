@@ -20,6 +20,16 @@ class Graph:
             if node.coordinates == coordinates:
                 return node
 
+    def nearest_node(self, coordinates: Coordinates) -> Node:
+        nearest_node = None
+        nearest_distance = float("inf")
+        for node in self.nodes:
+            distance = node.coordinates.get_distance(coordinates)
+            if distance < nearest_distance:
+                nearest_node = node
+                nearest_distance = distance
+        return nearest_node
+
     @classmethod
     def from_osm(cls, file: str) -> "Graph":
         elements = cls._flow_from_osm(file)
@@ -87,3 +97,16 @@ class Graph:
 
                 if reading_way:
                     way.append(line)
+
+
+    def get_node(self, node_id: int) -> Optional[Node]:
+        for node in self.nodes:
+            if node.id == node_id:
+                return node
+
+    def get_adjacent_nodes(self, node: Node) -> Generator[Node | None, Any, Any]:
+        for edge in self.edges:
+            if edge.source == node.id:
+                yield self.get_node(edge.target)
+            if edge.target == node.id:
+                yield self.get_node(edge.source)

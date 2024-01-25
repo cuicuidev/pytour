@@ -6,6 +6,11 @@ class Node:
         self.id = id
         self.coordinates = coordinates
 
+
+    def __eq__(self, other: "Node") -> bool:
+        return self.id == other.id
+
+
     def __str__(self) -> str:
         return f"Node {self.id} ({self.coordinates.lat}, {self.coordinates.lng})"
 
