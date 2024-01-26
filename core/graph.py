@@ -1,3 +1,5 @@
+import warnings
+
 from .node import Node
 from .edge import Edge
 from .coordinates import Coordinates
@@ -29,6 +31,11 @@ class Graph:
                 nearest_node = node
                 nearest_distance = distance
         return nearest_node
+
+    @classmethod
+    def from_api(cls, coordinates: Coordinates, radius: float) -> "Graph":
+        warnings.warn("This method is not implemented yet, returning test graph from osm file")
+        return cls.from_osm("test.osm")
 
     @classmethod
     def from_osm(cls, file: str) -> "Graph":
